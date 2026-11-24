@@ -1,0 +1,33 @@
+version: 1
+default_action: allow
+rules:
+  - id: block-destructive-sql
+    description: "Destructive SQL needs a human"
+    match:
+      tool: "*db*"
+      args_contains_any: ["DROP TABLE", "DROP DATABASE", "TRUNCATE", "DELETE FROM"]
+    action: require_approval
+    risk: critical
+
+  - id: block-secret-file-writes
+    match:
+      tool: "*fs*write*"
+      path_matches_any: ["**/.env", "**/.env.*", "**/*.pem", "**/id_rsa*"]
+    action: block
+    risk: critical
+
+  - id: external-http-needs-approval
+    match:
+      tool: "*http*"
+      domain_not_in: ["api.company.com"]
+    action: require_approval
+    risk: high
+
+  - id: redact-secrets-in-responses
+    match:
+      tool: "*"
+      direction: response
+      contains: secrets
+    action: redact
+    risk: medium
+

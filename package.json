@@ -1,0 +1,31 @@
+{
+  "name": "sudarshan-gateway",
+  "version": "0.1.0",
+  "description": "Sudarshan MCP Gateway - Security proxy between MCP client and downstream MCP servers",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run",
+    "start": "tsx src/index.ts",
+    "demo": "tsx test/demo.ts"
+  },
+  "bin": {
+    "sudarshan": "./dist/index.js",
+    "sudarshan-approve": "./bin/sudarshan-approve.js",
+    "sudarshan-audit": "./bin/sudarshan-audit.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.6.1",
+    "picomatch": "^4.0.2",
+    "yaml": "^2.7.0",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.9",
+    "@types/picomatch": "^3.0.0",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.2",
+    "vitest": "^3.0.7"
+  }
+}
+

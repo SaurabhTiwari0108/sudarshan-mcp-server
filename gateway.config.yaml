@@ -1,0 +1,13 @@
+gateway:
+  agent_id: "default-agent"
+  audit_log_path: "./data/audit.jsonl"
+  approval_dir: "./data/approvals"
+  approval_http_port: 7878
+  approval_timeout_seconds: 120
+
+downstream:
+  - name: "mock"
+    command: "node"
+    args: ["./fixtures/mock-server/index.js"]
+    env: {}
+
